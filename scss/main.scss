@@ -132,3 +132,6 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 .custom-color{
     color: map-get($custom-theme-colors, "light-color" );
 }
+li{
+  list-style-type: none;  
+}
