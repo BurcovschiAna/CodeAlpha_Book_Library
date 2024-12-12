@@ -8,7 +8,7 @@ $custom-theme-colors:(
     "light-color": #ECEBDE,
     "light-green": #B2C9AD,
     "darker-green": #66785F,
-    "dark-green": #4B5945
+    "dark-green": #4B5945,
 );
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 
@@ -134,4 +134,16 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 }
 li{
   list-style-type: none;  
+}
+
+.profile-picture{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    #profile-img, #profile-input{
+        position: absolute;
+    }
+    #profile-img{
+        width: 50%;
+    }
 }
