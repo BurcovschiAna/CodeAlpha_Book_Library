@@ -11,7 +11,7 @@ const createInput = document.querySelector("#create-input");
 const invalidEmail = document.querySelector("#invalid-email");
 const invalidUsername = document.querySelector("#invalid-username");
 const invalidPassword = document.querySelector("#invalid-password");
-const createAccountInput = document.querySelectorAll(".create-account-input")
+
 
 logIn.addEventListener("click", logInFunction);
 createAccount.addEventListener("click", logInFunction);
@@ -22,47 +22,10 @@ seePassword.forEach(icon => {
     });
 });
 
-// createAccountInput.forEach(input => {
-//     input.addEventListener("blur", inputError);
-// });
-
-// function inputError(){
-//         this.classList.add("border-danger");
-//         console.log(this);
-        
-//         console.log("da");   
-// }
 
 function checkIfValid(username, password, email) {
     const emailPattern = /^[a-zA-Z-.]+@[a-z]+\.[a-z]{2,3}$/; 
     let isValid = true;
-    // if(!emailPattern.test(email) || email.length === "" || password.length <= 7 && password.length >= 21 || username === ""){
-    //     if(!emailPattern.test(email) || email.length === ""){
-    //         invalidEmail.classList.remove("d-none");
-    //         invalidEmail.innerHTML = "Invalid Email";
-    //         invalidEmail.classList.add("d-block");
-    //         createEmail.classList.add("border-danger")
-    //         isValid = false;
-    //     } else{
-    //         createEmail.classList.remove("border-danger")
-    //         invalidEmail.classList.add("d-none");
-    //     }
-        
-    //     if(password.length < 8 && password.length > 20 || password === ""){
-    //         invalidPassword.classList.add("text-danger");
-    //         console.log(invalidPassword + "nu");
-    //         createPasswordInput.classList.add("border-danger");
-    //         console.log(password);
-            
-    //         isValid = false;
-    //     } else {
-    //         invalidPassword.classList.remove("text-danger");
-    //         createPasswordInput.classList.remove("border-danger");
-    //         console.log(invalidPassword);
-    //     }
-    // } else{
-    //     isValid = true;
-    // }
     if (!emailPattern.test(email) || email.length === "") {
         invalidEmail.classList.remove("d-none");
         invalidEmail.innerHTML = "Invalid Email";
@@ -87,9 +50,11 @@ function checkIfValid(username, password, email) {
     }
 
     
-    if (username === "") {
+    if (username === "" || username.length > 50) {
         invalidUsername.classList.remove("d-none");
         createUsername.classList.add("border-danger");
+        console.log(username.length);
+        
         isValid = false; 
     } else{
         createUsername.classList.remove("border-danger");
@@ -110,9 +75,8 @@ function logInFormFunction(event) {
         return;
     } else{
     console.log("da");
-
-    var modal = new bootstrap.Modal(document.getElementById('success-modal'));
-    modal.show();
+    // var modal = new bootstrap.Modal(document.getElementById('success-modal'));
+    // modal.show();
     logInForm.classList.remove("d-none");
     createAccountForm.classList.add("d-none");
     }    
@@ -135,20 +99,4 @@ function seePasswordFunction(input, icon){
         icon.classList.remove("bi-eye");
     }
 }
-
-
-
-// (() => {
-//     'use strict'   
-//     const forms = document.querySelectorAll('.needs-validation')
-//     Array.from(forms).forEach(form => {
-//       form.addEventListener('submit', event => {
-//         if (!form.checkValidity()) {
-//           event.preventDefault()
-//           event.stopPropagation()
-//         }
-  
-//         form.classList.add('was-validated')
-//       }, false)
-//     })
-//   })()
+let ceva = "../"
