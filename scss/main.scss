@@ -140,10 +140,56 @@ li{
     position: relative;
     width: 200px;
     height: 200px;
-    #profile-img, #profile-input{
+    #profile-img, .overlay, #profile-input, i{
         position: absolute;
+        left: 0;
+        top: 0;
     }
     #profile-img{
-        width: 50%;
+        width: 100%;
+        z-index: 1;
+    }
+    .overlay{
+        z-index: 5;
+        width: 200px;
+        height: 200px;
+        #profile-input, i{
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        
+         } 
+        i{
+             z-index: 10;
+        }
+        #profile-input{
+            width: 45px;
+            z-index: 20;
+            opacity: 0;
+        }
+    }
+    
+}
+.add-book{
+    position: relative;
+   height: 20px;
+   width: 40px;
+    i, #add-book{
+        position: absolute;
+        
+    }
+    #add-book{
+        width: 35px;
+        z-index: 2;
+        opacity: 0;
+        top: 0;
+        left: 0;
+    }
+    i{
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
     }
 }

@@ -1,22 +1,31 @@
-const input = document.getElementById("profile-img");
-const preview = document.getElementById("profile-input");
+const chosePicture = document.querySelector("#chose-picture");
+const profileImg = document.querySelector("#profile-img");
+const deleteBook = document.querySelectorAll(".delete-posted-book");
 
-input.addEventListener('change', function() {
-    const file = this.files[0];
-    console.log(file);
+
+
+profileImg.addEventListener("mouseenter", displayInput);
+profileImg.addEventListener("mouseleave", hideInput);
+
+deleteBook.forEach(btn => {
+    btn.addEventListener("click", deleteABook);
+})
+
+function displayInput(){
+    chosePicture.classList.remove("d-none");
+}
+
+function hideInput(){
+    setTimeout(() => {
+        chosePicture.classList.add("d-none"); 
+    }, 300);
+}
+
+function deleteABook() {
+    console.log(this);
     
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            preview.src = event.target.result;
-            preview.style.display = 'block'; 
-            console.log(preview.src);
-            console.log(event.target.result);
-            
-            
-        }
-        reader.readAsDataURL(file);
+    const bookItem = this.closest('.list-group-item'); // Adjust '.book-item' to your actual parent class
+    if (bookItem) {
+        bookItem.remove(); // Remove the parent element
     }
-});
-
-
+}
