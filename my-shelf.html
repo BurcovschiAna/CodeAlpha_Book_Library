@@ -9,6 +9,19 @@
     <link rel="stylesheet" href="./css/main.min.css">
 </head>
 <body class="bg-light-color">
+    <div class="modal" tabindex="-1" id="modal-error">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close btn-darker-green" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body" id="modal-message">
+              <p>Modal body text goes here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="navbar navbar-expand-lg bg-dark-green fixed-top">
         <div class="container-xxl">
             <a href="home-page.html" class="navbar-brand ">
@@ -33,30 +46,28 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="my-profilet.html" class="nav-link text-light-color">
+                        <a href="my-profile.html" class="nav-link text-light-color">
                             My profile
                         </a>
                     </li>
-                    
-                    <li class="nav-item  dropdown ">
-                        <a href="#" class="nav-link text-light-color  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
-                        <ul class="dropdown-menu bg-light-color">
-                            <li><a class="dropdown-item" href="#">Academic</a></li>
-                            <li><a class="dropdown-item" href="#">Culture</a></li>
-                            <li><a class="dropdown-item" href="#">Personal Growth</a></li>
-                            <li><a class="dropdown-item" href="#">Hobbies & Crafts</a></li>
-                            <li><a class="dropdown-item book-category" href="#">All</a></li>
-                        </ul>
-                    </li>
                 </ul>
                 <div class="d-flex" role="search">
-                    <input class="form-control me-2 bg-light-color" type="search" placeholder="Search" aria-label="Search">
-                    <div class="btn btn-outline-light-color fw-bold" type="submit">Search</div>
+                    <input class="form-control me-2 bg-light-color" type="search" id="search-input" placeholder="Search" aria-label="Search">
+                    <div class="btn btn-outline-light-color fw-bold" type="submit" id="search-btn">Search</div>
                 </div>
             </div>
         </div>
     </div>
     <div class="container-xxl my-5 pt-5">
+        <div class="img-container my-5 ">
+            <img src="./assets/img/Shelf.jpg" alt="" class="img-fluid">
+            <div class="overlay  d-flex ">
+                <p class="align-self-center fs-3 text-white text-center">
+                    Welcome to your personal bookshelf! Here, you can curate and manage your favorite reads, keeping all your liked books in one convenient place. Whether it's a gripping novel, an inspiring biography, or a helpful guide, this shelf is designed to celebrate your literary journey.
+                </p>
+            </div>
+        </div>
+        <div class="row" id="all-books"></div>
     </div>
     <div class="bg-dark-green">
         <div class="container-xxl p-5">
@@ -90,6 +101,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="./assets/js/my-shelf.js"></script>
+    <script src="./assets/js/data.js"></script>
+    <script src="./assets/js/my-shelf.js"></script> 
 </body>
 </html>
