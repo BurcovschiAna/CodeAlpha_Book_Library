@@ -5,7 +5,7 @@ const searchInput = document.querySelector("#search-input");
 const searchBtn = document.querySelector("#search-btn");
 const modalMessage = document.querySelector("#modal-message");
 
-var modal = new bootstrap.Modal(document.querySelector('#modal-error'));
+let modal = new bootstrap.Modal(document.querySelector('#modal-error'));
 let cards = [];
 let likedBookIndices = [];
 
@@ -56,18 +56,11 @@ function displayBooks(source) {
 initializeLikedBooks();
 }
 displayBooks(books);
-function displayCategory(event){
-    
-    for(let i = 0; i < cards.length; i++){
-        cards[i].classList.add("d-none")
-    }
-    const selectedCategory = event.target.innerHTML.trim();
 
-    for (let i = 0; i < cards.length; i++) {
-        if (cards[i].getAttribute("data-type") === selectedCategory) {
-            cards[i].classList.remove("d-none");
-        }
-    }
+function displayCategory(event) {
+    const selectedCategory = event.target.innerHTML.trim();
+    const filteredBooks = books.filter(book => book.category === selectedCategory);
+    displayBooks(filteredBooks); 
 }
 
 
@@ -87,12 +80,15 @@ function search() {
     } else {
         modalMessage.innerHTML = "You didn't enter a book name or author."
         modal.show(); 
+        return;
     }
 }
 
 function searchByEnter(event) {
     if (event.key === 'Enter') {
         search(); 
+    } else {
+        return;
     }
 }
 
@@ -102,6 +98,8 @@ function initializeLikedBooks() {
         likedBookIndices = JSON.parse(savedLikedBooks);
         likedBookIndices.forEach(index => {
             const card = document.querySelector(`[data-index="${index}"]`);
+            console.log(card);
+            
             if (card) {
                 const heartIcon = card.querySelector(".liked-book i");
                 heartIcon.classList.add("bi-heart-fill", "text-danger");
@@ -127,4 +125,3 @@ function like() {
     localStorage.setItem("likedBooks", JSON.stringify(likedBookIndices)); 
     console.log(likedBookIndices);
 }
-initializeLikedBooks();
