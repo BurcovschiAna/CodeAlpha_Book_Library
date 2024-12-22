@@ -193,7 +193,14 @@ li{
         
     }
 }
-.card-img-top{
-    height: 300px;
-    // max-width: 100%;
+#all-books > *{
+    max-width: 300px;
+    .img-card{
+    height: 250px;
+    img{
+        object-fit: contain;
+        max-height: 250px;
+        width: 100%;
+    }
+}
 }
