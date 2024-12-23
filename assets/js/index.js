@@ -1,94 +1,109 @@
-const logIn = document.querySelector("#log-in");
+// Selecting DOM elements for later use
+const logIn = document.querySelector("#log-in-form-display");
 const createAccount = document.querySelector("#create-account");
 const logInForm = document.querySelector("#log-in-form");
 const createAccountForm = document.querySelector("#create-account-form");
 const seePassword = document.querySelectorAll(".see-password");
+
+// Selecting input fields for validation
 const createEmail = document.querySelector("#create-email");
 const createUsername = document.querySelector("#create-username");
-const createPasswordInput = document.querySelector("#create-password");
-const logPasswordInput = document.querySelector("#log-password");
+const createPassword = document.querySelector("#create-password");
 const createInput = document.querySelector("#create-input");
-const invalidEmail = document.querySelector("#invalid-email");
-const invalidUsername = document.querySelector("#invalid-username");
-const invalidPassword = document.querySelector("#invalid-password");
+const invalidCreateEmail = document.querySelector("#invalid-email");
+const invalidCreateUsername = document.querySelector("#invalid-username");
+const invalidCreatePassword = document.querySelector("#invalid-password");
 
+const logInLink = document.querySelector("#log-in");
+const logUsername = document.querySelector("#log-username");
+const logPassword = document.querySelector("#log-password");
+const invalidLogusername = document.querySelector("#invalid-username-log");
+const invalidLogPassword = document.querySelector("#invalid-password-log");
 
-logIn.addEventListener("click", logInFunction);
-createAccount.addEventListener("click", logInFunction);
-createInput.addEventListener("click", logInFormFunction);
+// Regular expression for validating email format
+const emailPattern = /^[a-zA-Z-.]+@[a-z]+\.[a-z]{2,3}$/; 
+
+// Event listeners for form interactions
+logIn.addEventListener("click", displayForm);
+createAccount.addEventListener("click", displayForm);
+createInput.addEventListener("click", createAccountValidation);
+
+// Toggle password visibility on icon click
 seePassword.forEach(icon => {
     icon.addEventListener("click", function (){
-      seePasswordFunction(this.nextElementSibling, this.firstChild) 
+        seePasswordFunction(this.nextElementSibling, this.firstChild) 
     });
 });
 
+// Validate login form
+logInLink.addEventListener("click", logInValidation);
 
-function checkIfValid(username, password, email) {
-    const emailPattern = /^[a-zA-Z-.]+@[a-z]+\.[a-z]{2,3}$/; 
+// Function to check if account creation inputs are valid
+function checkIfValidCreateAccount(username, password, email) {
     let isValid = true;
+    // Validate email format
     if (!emailPattern.test(email) || email.length === "") {
-        invalidEmail.classList.remove("d-none");
-        invalidEmail.innerHTML = "Invalid Email";
-        invalidEmail.classList.add("d-block");
+        invalidCreateEmail.classList.remove("d-none");
+        invalidCreateEmail.innerHTML = "Invalid Email";
+        invalidCreateEmail.classList.add("d-block");
         createEmail.classList.add("border-danger");
         isValid = false;
     } else {
         createEmail.classList.remove("border-danger");
-        invalidEmail.classList.add("d-none");
+        invalidCreateEmail.classList.add("d-none");
     }
 
-  
+    // Validate password length
     if (password.length < 8 || password.length > 20 || password === "") {
-        invalidPassword.classList.remove("d-none");
-        invalidPassword.innerHTML = "Password must be between 8 and 20 characters.";
-        invalidPassword.classList.add("text-danger");
-        createPasswordInput.classList.add("border-danger");
+        invalidCreatePassword.classList.remove("d-none");
+        invalidCreatePassword.innerHTML = "Password must be between 8 and 20 characters.";
+        invalidCreatePassword.classList.add("text-danger");
+        createPassword.classList.add("border-danger");
         isValid = false; 
     } else {
-        invalidPassword.classList.add("d-none");
-        createPasswordInput.classList.remove("border-danger");
+        invalidCreatePassword.classList.add("d-none");
+        createPassword.classList.remove("border-danger");
     }
 
-    
+    // Validate username length
     if (username === "" || username.length > 50) {
-        invalidUsername.classList.remove("d-none");
+        invalidCreateUsername.classList.remove("d-none");
         createUsername.classList.add("border-danger");
-        console.log(username.length);
-        
         isValid = false; 
-    } else{
+    } else {
         createUsername.classList.remove("border-danger");
-        invalidUsername.classList.add("d-none");
+        invalidCreateUsername.classList.add("d-none");
     }
-       
-        console.log(isValid);
-        
-    return isValid
+    
+    return isValid;
 }
 
-
-function logInFormFunction(event) {
+// Function to validate account creation and show modal on success
+function createAccountValidation(event) {
     event.preventDefault();
     event.stopPropagation();
-    if (!checkIfValid(createUsername.value, createPasswordInput.value, createEmail.value)) {
-        console.log("nu");
+    if (!checkIfValidCreateAccount(createUsername.value, createPassword.value, createEmail.value)) {
         return;
-    } else{
-    console.log("da");
-    // var modal = new bootstrap.Modal(document.getElementById('success-modal'));
-    // modal.show();
-    logInForm.classList.remove("d-none");
-    createAccountForm.classList.add("d-none");
+    } else {
+        var modal = new bootstrap.Modal(document.getElementById('success-modal'));
+        modal.show();
+        // Clear input fields after successful registration
+        createEmail.value = "";
+        createUsername.value = "";
+        createPassword.value = "";
+        logInForm.classList.remove("d-none");
+        createAccountForm.classList.add("d-none");
     }    
 }
 
-function logInFunction() {
+// Function to toggle between login and account creation forms
+function displayForm() {
     logInForm.classList.toggle("d-none");
-    createAccountForm.classList.toggle("d-none")
+    createAccountForm.classList.toggle("d-none");
 }
 
-function seePasswordFunction(input, icon){
-
+// Function to toggle password visibility
+function seePasswordFunction(input, icon) {
     if (input.getAttribute('type') === 'password') {
         input.setAttribute('type', 'text');
         icon.classList.remove("bi-eye-slash");
@@ -99,4 +114,37 @@ function seePasswordFunction(input, icon){
         icon.classList.remove("bi-eye");
     }
 }
-let ceva = "../"
+
+// Function to check if login inputs are valid
+function checkIfValidLogIn(username, password) {
+    let isValid = true;
+    // Validate password length
+    if (password.length < 8 || password.length > 20 || password === "") {
+        invalidLogPassword.classList.remove("d-none");
+        invalidLogPassword.classList.add("text-danger");
+        logPassword.classList.add("border-danger");
+        isValid = false; 
+    } else {
+        invalidLogPassword.classList.add("d-none");
+        logPassword.classList.remove("border-danger");
+    }
+    // Validate username length
+    if (username === "" || username.length > 50) {
+        invalidLogusername.classList.remove("d-none");
+        logUsername.classList.add("border-danger");
+        isValid = false; 
+    } else {
+        logUsername.classList.remove("border-danger");
+        invalidLogusername.classList.add("d-none");
+    }        
+    return isValid;
+}
+
+// Function to validate login form on submission
+function logInValidation(event) {
+    if (!checkIfValidLogIn(logUsername.value, logPassword.value)) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+    } 
+}
