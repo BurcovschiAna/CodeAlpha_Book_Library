@@ -1,13 +1,11 @@
 $primary : #4B5945;
-$box-shadow-sm: 0 .125rem .25rem #4B5945;
-
 @import "../node_modules/bootstrap/scss/_functions.scss";
 @import "../node_modules/bootstrap/scss/_variables.scss";
 
 $custom-theme-colors:(
     "light-color": #ECEBDE,
     "light-opacity": rgba(0, 0, 0, 0.493),
-    "darker-green": #66785F,
+    "light-green": #66785F,
     "dark-green": #4B5945,
 );
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);
@@ -18,8 +16,6 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
     background: map-get($custom-theme-colors, "light-color" );  
     width: 100%;
     height:100vh;
-    
-   
 }
 
 .circles{
@@ -36,7 +32,7 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
         list-style: none;
         width: 20px;
         height: 20px;
-        background: map-get($custom-theme-colors, "darker-green");
+        background: map-get($custom-theme-colors, "light-green");
         animation: animate 25s linear infinite;
         bottom: -150px;
     }
@@ -124,7 +120,7 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
 }
 .form-container{
     position: absolute;
-    z-index: 9999;
+    z-index: 10;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
