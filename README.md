@@ -190,3 +190,5 @@
         </ul>
     </li>
 </ul>
+    <h2>Contact</h2>
+    <p>For any inquiries or feedback, feel free to reach out to me at <a href="https://www.linkedin.com/in/ana-burcovschi-2a0b8b271/">LinkedIn</a>.</p>
